@@ -6,7 +6,7 @@ The helm chart for SRE Rescue pod will spin up a k8s `deployment` in the cluster
 ## Install
 #### TLDR
 ```
-helm upgrade --install sre-rescue-pod .tools/sre-rescue -f .tools/sre-rescue-pod/values.yaml
+helm upgrade --install sre-rescue-pod .tools/sre-rescue -f values.yaml
 ```
 | Paramater        | Description           | Default  |
 | ------------- |:-------------:| -----:|
