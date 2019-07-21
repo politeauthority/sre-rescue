@@ -6,7 +6,7 @@ global:
   slackCliToken:
 
 image:
-  repository: politeauthority/sre-resuce
+  repository: politeauthority/sre-rescue
   tag: latest
   pullPolicy: IfNotPresent
 
