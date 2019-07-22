@@ -1,6 +1,14 @@
 FROM alpine:3.10
 
 ENV SLACK_CLI_TOKEN='token'
+ENV B2_APPLICATION_KEY_ID=''
+ENV B2_APPLICATION_KEY=''
+ENV PG_HOST=''
+ENV PG_PORT=''
+ENV PG_DB_NAME=''
+ENV PG_USER=''
+ENV PG_PASS=''
+
 
 RUN apk add --no-cache \
     bash \
@@ -16,6 +24,13 @@ RUN apk add --no-cache \
     python3 \
     python3-dev \
     py-pip \
+    zip \
+    unzip \
     && rm -rf /var/cache/apk/*
+
+RUN pip install \
+    b2
+
+ADD ./scripts /opt/scripts
 
 CMD tail -f /dev/null

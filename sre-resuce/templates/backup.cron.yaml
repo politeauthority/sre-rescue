@@ -1,0 +1,61 @@
+{{- if .Values.postgresTools.backup.enabled }}
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: postgres-backup
+spec:
+  schedule: {{ .Values.postgresTools.backup.schedule }}
+  startingDeadlineSeconds: 20
+  successfulJobsHistoryLimit: 2
+  jobTemplate:
+    spec:
+      completions: 1
+      backoffLimit: 2
+      activeDeadlineSeconds: 7200
+      template:
+        metadata:
+          name: postgres-backup
+        spec:
+          containers:
+          - name: postgres-backup
+            image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+            imagePullPolicy: {{ .Values.image.pullPolicy }}
+            env:
+              - name: EXAMPLE
+                value: 'example'
+              {{- if .Values.postgresTools.enabled }}
+              - name: PG_HOST
+                value: {{ .Values.postgresTools.pgHost | quote }}
+              - name: PG_PORT
+                value: {{ .Values.postgresTools.pgPort | quote }}
+              - name: PG_DB_NAME
+                value: {{ .Values.postgresTools.pgDbName | quote }}
+              - name: PG_USER
+                value: {{ .Values.postgresTools.pgUser | quote }}
+              - name: PG_PASS
+                value: {{ .Values.postgresTools.pgPass | quote }}
+              {{- end }}
+              {{- if .Values.tools.b2BucketName }}
+              - name: B2_BUCKET_NAME
+                value: {{ .Values.tools.b2BucketName | quote }}
+              {{- end }}
+              {{- if .Values.tools.b2BackupPath }}
+              - name: B2_BACKUP_PATH
+                value: {{ .Values.tools.b2BackupPath | quote }}
+              {{- end }}
+
+              {{- if .Values.tools.b2ApplicationKeyID }}
+              - name: B2_APPLICATION_KEY_ID
+                value: {{ .Values.tools.b2ApplicationKeyID | quote }}
+              {{- end }}
+              {{- if .Values.tools.b2ApplicationKey }}
+              - name: B2_APPLICATION_KEY
+                value: {{ .Values.tools.b2ApplicationKey | quote }}
+              {{- end }}
+            command:
+              - /bin/sh
+              - -c
+              - /opt/scripts/backup_postgres.sh
+          restartPolicy: Never
+      backoffLimit: 4
+{{- end }}

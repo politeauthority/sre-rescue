@@ -10,6 +10,25 @@ image:
   tag: latest
   pullPolicy: IfNotPresent
 
+tools:
+  # BackBlaze Credentials
+  b2BucketName: ""
+  b2BackupPath: ""
+  b2ApplicationKey: ""
+  b2ApplicationKeyID: ""
+  b2BackupPath: ""
+
+postgresTools:
+  enabled: false
+  # Postgres Connection Info/ Credentials
+  pgHost: ""
+  pgPort: 5432
+  pgDbName: ""
+  pgUser: ""
+  pgPass: ""
+  backup:
+    enabled: True
+    schedule: 0 * * * *
 
 nameOverride: ""
 fullnameOverride: ""
