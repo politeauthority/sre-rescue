@@ -24,8 +24,6 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
-            - name: EXAMPLE
-              value: 'example'
             {{- if .Values.postgresTools.enabled }}
             - name: PG_HOST
               value: {{ .Values.postgresTools.pgHost | quote }}
@@ -46,7 +44,6 @@ spec:
             - name: B2_BACKUP_PATH
               value: {{ .Values.tools.b2BackupPath | quote }}
             {{- end }}
-
             {{- if .Values.tools.b2ApplicationKeyID }}
             - name: B2_APPLICATION_KEY_ID
               value: {{ .Values.tools.b2ApplicationKeyID | quote }}
