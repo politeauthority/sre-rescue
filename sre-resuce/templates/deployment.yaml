@@ -56,8 +56,6 @@ spec:
             - /bin/sh
             - -c
             - /opt/scripts/init.sh
-      resources:
-        {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
