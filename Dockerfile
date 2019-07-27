@@ -24,6 +24,8 @@ RUN apk add --no-cache \
     python3 \
     python3-dev \
     py-pip \
+    py3-psycopg2 \
+    postgresql-dev \
     zip \
     unzip \
     && rm -rf /var/cache/apk/*
