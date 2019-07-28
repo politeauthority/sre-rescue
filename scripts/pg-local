@@ -1,0 +1,2 @@
+#!/bin/bash
+psql -w -h ${PG_HOST} -U ${PG_USER} ${PG_DB_NAME}

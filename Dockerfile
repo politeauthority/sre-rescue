@@ -34,5 +34,6 @@ RUN pip install \
     b2
 
 ADD ./scripts /opt/scripts
+RUN mv /opt/scripts/pg-local /usr/bin
 
 CMD tail -f /dev/null

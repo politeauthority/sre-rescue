@@ -5,6 +5,3 @@ then
     echo "Created .pgpass file"
 fi
 tail -f /dev/null
-
-
-
