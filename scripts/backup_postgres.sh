@@ -2,6 +2,7 @@
 
 set -eo pipefail
 echo "Creating backup"
+cat  ~/.pgpass
 pg_dump -w -h ${PG_HOST} -U ${PG_USER} ${PG_DB_NAME} > /tmp/db.sql
 cd /tmp
 echo "Zipping backup"

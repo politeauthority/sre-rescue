@@ -1,35 +1,35 @@
 # Default values for sre-resuce.
 
+replicaCount: 1
 global:
   # Slack Token for sending messages
   slackCliToken:
-  runDaemon: False
-  replicaCount: 1
 
 image:
   repository: politeauthority/sre-rescue
   tag: latest
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
 
 tools:
+  getSecrets: true
   # BackBlaze Credentials
-  b2BucketName: ""
-  b2BackupPath: ""
-  b2ApplicationKey: ""
-  b2ApplicationKeyID: ""
-  b2BackupPath: ""
+  b2BucketName: aB2BucketName
+  b2ApplicationKey: 012431234your123123123key
+  b2ApplicationKeyID: ASJJH7-your-JHGAS76-Application-1235-ID
+  b2BackupPath: path/frombucket/forbackup
 
 postgresTools:
-  enabled: false
+  enabled: true
   # Postgres Connection Info/ Credentials
-  pgHost: ""
+  pgHost: pep-postgres-postgresql
   pgPort: 5432
-  pgDbName: ""
-  pgUser: ""
-  pgPass: ""
+  pgDbName: peppercon_evennia
+  pgUser: blackpepper
+  pgPass: tJdi5H3NpvRfvZb
   backup:
-    enabled: True
-    schedule: 0 * * * *
+    enabled: true
+    schedule: "*/5 * * * *"
+
 
 nameOverride: ""
 fullnameOverride: ""
